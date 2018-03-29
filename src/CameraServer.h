@@ -36,16 +36,16 @@ public:
     ~CameraServer();
     void start();
     void stop();
-    int getCameraCount() { return cameraCount; }
+    int getCameraCount() const { return cameraCount; }
 
 private:
-    std::string getImgCapLocation(const ConfFile &conf);
-    std::string getGazeboCamTopic(const ConfFile &conf);
+    std::string getImgCapLocation(const ConfFile &conf) const;
+    std::string getGazeboCamTopic(const ConfFile &conf) const;
     int detectCamera(const ConfFile &conf);
 #ifdef ENABLE_GAZEBO
-    int detect_devices_gazebo(ConfFile &conf, std::vector<CameraComponent *> &camList);
+    int detect_devices_gazebo(const ConfFile &conf, std::vector<CameraComponent *> &camList) const;
 #endif
-    int detect_devices_v4l2(const ConfFile &conf, std::vector<CameraComponent *> &cameraList);
+    int detect_devices_v4l2(const ConfFile &conf, std::vector<CameraComponent *> &cameraList) const;
 #ifdef ENABLE_MAVLINK
     MavlinkServer mavlink_server;
 #endif
